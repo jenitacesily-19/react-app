@@ -1,0 +1,9 @@
+#dist
+/dist
+
+# Node modules
+node_modules/
+
+#parcel
+.parcel-cache/
+
