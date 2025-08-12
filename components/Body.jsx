@@ -1,88 +1,64 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RestaurantCard from "../components/RestaurantCard";
-import ResList from "../utils/mockData";
-// let  listRes=[
-//     {
-//         "info": {
-//             "id": "158942",
-//             "name": "Hotel Burma Kadai",
-//             "cloudinaryImageId": "gxqbhxrt0unppikd8ll5",
-//             "locality": "Municipal Office Road",
-//             "areaName": "Fathimanagar",
-//             "costForTwo": "500 For Two ",
-//             "cuisines": [
-//                 "Chinese",
-//                 "South Indian",
-//                 "Biryani"
-//             ],
-//             "avgRating": 4.4,
-//             "sla": {
-//                 "deliveryTime": 29,
-//             }
-//   },
-//   },
-//    {
-//         "info": {
-//             "id": "158943",
-//             "name": "Hotel Kamaliya",
-//             "cloudinaryImageId": "ylwkvwa2vzdbrtdynrcg",
-//             "locality": "Municipal Office Road",
-//             "areaName": "New Bus Stand",
-//             "costForTwo": "500 For Two ",
-//             "cuisines": [
-//                 "Chinese",
-//                 "South Indian",
-//                 "Biryani"
-//             ],
-//             "avgRating": 4.8,
-//             "sla": {
-//                 "deliveryTime": 29,
-//             }
-// },
-// },
-// {
-//         "info": {
-//             "id": "158944",
-//             "name": "Hotel Aasife",
-//             "cloudinaryImageId": "90012597629321295211c3881c8bb0af",
-//             "locality": "Krishnamachari Rd",
-//             "areaName": "New Bus Stand",
-//             "costForTwo": "500 For Two ",
-//             "cuisines": [
-//                "Biryani",
-//                 "Indian",
-//                 "Grill"
-//             ],
-//             "avgRating": 4.9,
-//             "sla": {
-//                 "deliveryTime": 29,
-//             }
-// },
-// },
-    
-    
-// ]
+import Shimmer from "./Shimmer";
 const Body = () => {
-    const [listRes, setListRes]=useState([]);
-    return (
+    const [listRes, setListRes]= useState([]);
+    const [filteredRestaurant, setfilteredRestaurant] =useState([]);
+    const [searchText, setSearchText]= useState();
+    console.log("Body render");
+    useEffect(()=>{
+       fetchData();
+    },[]);
+    const fetchData=async() =>{
+        const data=await fetch(
+            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.4217809&lng=77.8367282&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING%22);");
+        const json= await data.json();
+        console.log(json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [])
+        setListRes(json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []);
+        setfilteredRestaurant(json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []);
+    };
+    return listRes.length === 0 ?(
+        <Shimmer />
+    ): (
         <div className="body">
-            <div className="search">Search</div>
             <div className="filter">
-                <button className="filter-btn"
-                onClick={() =>{
-                   const filteredListRes=listRes.filter(
-                        (res) =>res.info.avgRating > 4
-                    );
-                    setListRes(filteredListRes);
-                }}>
-                    Top Rated Restaurant</button>
+                <div className="search">
+                    <input 
+                    type="text" 
+                    className="search-box"
+                     vlaue={searchText}
+                     onChange={(e) =>{
+                        setSearchText(e.target.value);
+                     }}
+                     />
+                    <button onClick={()=>{
+                        console.log(searchText);
+                        const filteredRestaurant=listRes.filter((res) =>
+                        res.info.name.toLowerCase().includes(searchText.toLowerCase()));
+                        setfilteredRestaurant(filteredRestaurant);
+                    }}
+                    >
+                    Search
+                    </button>
+                </div>
+                <div className="filter">
+                 <button className="filter-btn"
+                    onClick={() =>{
+                        const filteredListRes=listRes.filter(
+                         (res) =>res.info.avgRating > 4
+                        );
+                        setListRes(filteredListRes);
+                    }}>
+                        Top Rated Restaurant</button>
+                </div>
             </div>
             <div className="res-container">
-                {ResList.map((restaurant, index) => (
-                    <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+                {/* {Array.isArray(listRes) &&  */
+                filteredRestaurant.map((restaurants) => (
+                    <RestaurantCard key={restaurants.info.id} resData={restaurants} />
                 ))}
-            </div>
-        </div>
+            </div>     
+    </div>
     );
 };
 export default Body;

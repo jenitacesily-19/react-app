@@ -34,7 +34,7 @@ body{
 .res-card{
     height: auto;
     padding:5px;
-    margin: 5px;
+    margin: 10px;
     border-radius: 5%;
 }
 
@@ -55,10 +55,33 @@ body{
     gap: 4px;
     padding: 1rem;
 }
+.filter{
+    display:flex;
+    flex-wrap: wrap;
+}
 .search{
     padding:10px;
 }
 .filter-btn{
     margin:10px;
+    cursor: pointer;
+}
+.shimmer-container{
+    display:flex;
+    flex-wrap:wrap;
+}   
+.shimmer-card{
+    width:300px;
+    height:300px;
+    background-color: #f0f0f0;
+    margin: 20px;
+    border-radius: 5%;
+}
+.login-btn {
+    padding: 0 15px;
+    cursor: pointer;
+}
+.show-more{
+    padding:30px;
     cursor: pointer;
 }
