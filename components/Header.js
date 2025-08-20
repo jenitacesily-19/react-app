@@ -15,23 +15,23 @@ const Header = () => {
             </div>
             <div className="flex items-center">
                 <ul className="flex p-10 m-5 ">
-                    <li className="px-4">Online Status:{onlineStatus ? "✅" : "🔴"}</li>
-                    <li className="px-4">
+                    <li className="px-4  text-black hover:text-orange-600">Online Status:{onlineStatus ? "✅" : "🔴"}</li>
+                    <li className="px-4  text-black hover:text-orange-600">
                         <Link to="/body">Home</Link>
                     </li>
-                    <li className="px-4">
+                    <li className="px-4  text-black hover:text-orange-600">
                         <Link to="/here">About Us</Link>
                     </li>
-                    <li className="px-4">
+                    <li className="px-4  text-black hover:text-orange-600">
                         <Link to="/contact">Contact Us</Link>
                     </li>
-                    <li className="px-4">
+                    <li className="px-4  text-black hover:text-orange-600">
                         <Link to="/grocery">Grocery</Link>
                     </li>
-                    <li className="px-4">
+                    <li className="px-4  text-black hover:text-orange-600">
                         <Link to="/cart">Cart</Link>
                     </li>
-                    <li className="px-4">
+                    <li className="px-4  text-black hover:text-orange-600">
                         <Link to="/login">Login</Link>
                     </li>
                     {/* <button className=" px-4"

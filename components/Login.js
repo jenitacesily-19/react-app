@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 const Login = () => {
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
@@ -13,23 +14,23 @@ const Login = () => {
                     <legend>User Name</legend>
                     <input type="text"
                         placeholder="Enter a your user name"
-                        className='w-full border p-3 riunded-xl focus:ring-2
+                        className='w-full border p-3 rounded-xl focus:ring-2
                            focus:ring-orannge-500 outline-none'
                         value={user}
-                        onChange={(e) => {
+                        onChange={(e) =>
                             setUser(e.target.value)
-                        }}
+                        }
                         required
                     />
                     <legend>Password</legend>
                     <input type="text"
                         placeholder="enter your password"
-                        className='w-full border p-3 riunded-xl focus:ring-2
+                        className='w-full border p-3 rounded-xl focus:ring-2
                             focus:ring-orannge-500 outline-none'
                         value={password}
-                        onChange={(e) => {
+                        onChange={(e) =>
                             setPassword(e.target.value)
-                        }}
+                        }
                         required
                     />
 
@@ -37,8 +38,11 @@ const Login = () => {
                         className='w-full bg-orange-500 text-white py-3 rounded-xl
                              hover:bg-orange-600 transition'
                         onClick={handleSubmit}>Submit</button>
+                    <p>You Don't have a account <Link to="/signin"><span className='text-blue-400 m-2'>Signin</span></Link> </p>
                 </form>
             </div>
+            <button type="submit" className='w-50 p-40 mt-10 bg-orange-500 text-white py-3 rounded-xl
+        hover:bg-orange-600 transition'>Logout</button>
         </div>
     )
 }

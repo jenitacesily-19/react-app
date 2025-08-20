@@ -10,6 +10,8 @@ import Error from "../components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "../components/RestaurantMenu";
 import Login from "../components/Login";
+import Signin from "../components/signin";
+import Card from "../components/Card";
 // import Grocery from "../components/Grocery";
 const Grocery = lazy(() => import("../components/Grocery"));
 const About = lazy(() => import("../components/About"));
@@ -46,6 +48,10 @@ const appRouter = createBrowserRouter([
                 ),
             },
             {
+                path:"/cart",
+                element: <Card />
+            },
+            {
                 path: "/login",
                 element: <Login />,
             },
@@ -53,6 +59,10 @@ const appRouter = createBrowserRouter([
                 path: "/restaurants/:resId",
                 element: <RestaurantMenu />,
             },
+            {
+                path: "/signin",
+                element: <Signin />
+            }
         ],
         errorElement: <Error />,
     },
