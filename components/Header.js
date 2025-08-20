@@ -9,9 +9,9 @@ const Header = () => {
 
     return (
         <div className="flex justify-between bg-white shadow-lg">
-            <div className="logo-container">
+            <div className="flex flex-cols  ">
                 <img className="w-35" src={LOGO_URL} />
-                {/* <p className="w2 font-bold ">esty</p> */}
+                {/* <p className="w-5 p-5 mr-5 font-bold ">esty</p> */}
             </div>
             <div className="flex items-center">
                 <ul className="flex p-10 m-5 ">
@@ -31,7 +31,10 @@ const Header = () => {
                     <li className="px-4">
                         <Link to="/cart">Cart</Link>
                     </li>
-                    <button className=" px-4"
+                    <li className="px-4">
+                        <Link to="/login">Login</Link>
+                    </li>
+                    {/* <button className=" px-4"
                         onClick={() => {
                             btnName === "Login"
                                 ? setBtnName("Logout")
@@ -40,7 +43,7 @@ const Header = () => {
 
                     >
                         {btnName}
-                    </button>
+                    </button> */}
                 </ul>
             </div>
         </div>
