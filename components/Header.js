@@ -8,18 +8,19 @@ const Header = () => {
     const onlineStatus = useOnlineStatus();
 
     return (
-        <div className="flex justify-between bg-white shadow-lg ">
+        <div className="flex justify-between bg-white shadow-lg">
             <div className="logo-container">
-                <img className="w-25" src={LOGO_URL} />
+                <img className="w-35" src={LOGO_URL} />
+                {/* <p className="w2 font-bold ">esty</p> */}
             </div>
             <div className="flex items-center">
-                <ul className="flex p-10 m-5">
+                <ul className="flex p-10 m-5 ">
                     <li className="px-4">Online Status:{onlineStatus ? "✅" : "🔴"}</li>
                     <li className="px-4">
                         <Link to="/body">Home</Link>
                     </li>
                     <li className="px-4">
-                        <Link to="/about">About Us</Link>
+                        <Link to="/here">About Us</Link>
                     </li>
                     <li className="px-4">
                         <Link to="/contact">Contact Us</Link>
@@ -36,6 +37,7 @@ const Header = () => {
                                 ? setBtnName("Logout")
                                 : setBtnName("Login");
                         }}
+
                     >
                         {btnName}
                     </button>

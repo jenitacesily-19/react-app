@@ -34,12 +34,13 @@ const Body = () => {
                     <input
                         type="text"
                         className="border border-s-black "
-                        vlaue={searchText}
+                        value={searchText}
                         onChange={(e) => {
                             setSearchText(e.target.value);
                         }}
                     />
-                    <button className="bg-green-600 px-4 py-1 m-4 rounded-lg"
+                    <button className=" bg-orange-500 px-4  text-white
+                          hover:bg-orange-600 transitionpy-1 m-4 rounded-lg"
                         onClick={() => {
                             console.log(searchText);
                             const filteredRestaurant = listRes.filter((res) =>
@@ -51,7 +52,7 @@ const Body = () => {
                     </button>
                 </div>
                 <div className="filter m-4 p-2 flex items-center">
-                    <button className="bg-green-600 px-2 py-1 m-4 rounded-lg"
+                    <button className=" bg-orange-500  text-white hover:bg-orange-600 transition px-2 py-1 m-4 rounded-lg"
                         onClick={() => {
                             const filteredListRes = listRes.filter(
                                 (res) => res.info.avgRating < 4.5
